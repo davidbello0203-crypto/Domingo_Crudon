@@ -6,7 +6,7 @@ const MENSAJE_PEDIDO = 'Hola, quiero hacer un pedido a domicilio de cocina.';
 const Visitar = () => {
   const urlWhatsApp = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(MENSAJE_PEDIDO)}`;
   return (
-    <div className="min-h-screen p-6 pt-28 pb-28 relative">
+    <div className="min-h-[calc(100vh-9rem)] p-6 pb-8 relative flex flex-col justify-center">
       <div className="max-w-lg mx-auto text-center">
         <motion.h2
           initial={{ opacity: 0, y: 24 }}
@@ -32,7 +32,7 @@ const Visitar = () => {
         >
           <p className="flex items-center justify-center gap-2">
             <a
-              href="https://www.bing.com/maps/default.aspx?v=2&pc=FACEBK&mid=8100&where1=Miguel%20Negrete%20S%2FN%2C%20Tixtla%20de%20Guerrero%2C%20Mexico%2C%2039172&FORM=FBKPL1&mkt=es-MX"
+              href="https://maps.app.goo.gl/z1Q2YHbbNQjwTpNs8"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-white/90 hover:text-white transition-colors underline underline-offset-2"
@@ -46,7 +46,7 @@ const Visitar = () => {
         </motion.div>
         <div className="flex flex-wrap justify-center gap-4 mt-6">
           <motion.a
-            href="https://www.facebook.com/TheGreenGarden0"
+            href="https://www.facebook.com/share/1PnibQuPRF/?mibextid=wwXIfr"
             target="_blank"
             rel="noopener noreferrer"
             initial={{ opacity: 0, scale: 0.9 }}

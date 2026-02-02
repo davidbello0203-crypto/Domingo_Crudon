@@ -11,19 +11,25 @@ import BurbujaTransferencia from './components/BurbujaTransferencia';
 function App() {
   const [vistaActiva, setVistaActiva] = useState('menu');
   const [burbujaAbierta, setBurbujaAbierta] = useState(false);
+  const [seccionMenuActiva, setSeccionMenuActiva] = useState('bebidas');
 
   const navegacionItems = [
     { id: 'menu', label: 'Menú', icono: '📋' },
-    { id: 'ruleta-premios', label: 'Premios', icono: '🎁' },
     { id: 'ruleta-consumo', label: 'Juegos', icono: '🎲' },
+    { id: 'ruleta-premios', label: 'Premios', icono: '🎁' },
     { id: 'visitar', label: 'Visitar', icono: '📍' },
   ];
 
+  const esRuleta = vistaActiva === 'ruleta-premios' || vistaActiva === 'ruleta-consumo';
+  const mostrarBarraEnvios = vistaActiva === 'menu' && seccionMenuActiva !== 'botellas';
+
   return (
     <div className="min-h-screen bg-bar-dark">
+      {/* Header fijo - altura ~80px */}
       <Header onNavigate={setVistaActiva} />
 
-      <div className="pt-24 pb-24">
+      {/* Contenido principal: padding abajo para nav y, si aplica, barra de envíos */}
+      <main className={`pt-[68px] bg-bar-dark ${mostrarBarraEnvios ? 'pb-32' : 'pb-24'}`}>
         <AnimatePresence mode="wait">
           {vistaActiva === 'menu' && (
             <motion.div
@@ -33,7 +39,11 @@ function App() {
               exit={{ opacity: 0, x: 16 }}
               transition={{ duration: 0.25, ease: 'easeOut' }}
             >
-              <Menu onAbrirTransferencia={() => setBurbujaAbierta(true)} />
+              <Menu
+                initialSeccion={seccionMenuActiva}
+                onAbrirTransferencia={() => setBurbujaAbierta(true)}
+                onSeccionChange={setSeccionMenuActiva}
+              />
             </motion.div>
           )}
           {vistaActiva === 'ruleta-premios' && (
@@ -70,34 +80,33 @@ function App() {
             </motion.div>
           )}
         </AnimatePresence>
+      </main>
 
-        {/* Pie estático: envíos + WhatsApp + #Todosagreen (solo en pestañas distintas de Visitar) */}
-        {vistaActiva !== 'visitar' && <AnuncioEnvios />}
-      </div>
+      {/* Barra de envíos a domicilio: fija encima del nav, fuera del scroll */}
+      {mostrarBarraEnvios && <AnuncioEnvios />}
 
-      <BurbujaTransferencia abierto={burbujaAbierta} onToggle={setBurbujaAbierta} />
+      {!esRuleta && <BurbujaTransferencia abierto={burbujaAbierta} onToggle={setBurbujaAbierta} />}
 
-      {/* Barra de pestañas fija (siempre visible, como la burbuja de transferencia) */}
-      <div className="fixed bottom-0 left-0 right-0 bg-menu-green-dark/95 backdrop-blur-md border-t border-menu-cream/20 p-2 z-40">
+      {/* Barra de navegación fija abajo - altura 80px (pb-20) */}
+      <nav className="fixed bottom-0 left-0 right-0 h-20 bg-menu-green-dark/95 backdrop-blur-md border-t border-menu-cream/20 px-2 py-3 z-40 safe-area-bottom">
         <div className="flex justify-around items-center max-w-md mx-auto">
           {navegacionItems.map((item) => (
             <motion.button
               key={item.id}
               onClick={() => setVistaActiva(item.id)}
-              className={`flex flex-col items-center gap-1 px-3 py-2 rounded-lg transition-all ${
+              className={`flex flex-col items-center gap-0.5 px-4 py-1.5 rounded-xl transition-all ${
                 vistaActiva === item.id
-                  ? 'bg-menu-cream/25 text-menu-cream'
-                  : 'text-menu-cream/60 hover:text-menu-cream/90'
+                  ? 'bg-menu-cream/20 text-menu-cream'
+                  : 'text-menu-cream/50 hover:text-menu-cream/80'
               }`}
-              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span className="text-xl">{item.icono}</span>
-              <span className="text-xs font-medium">{item.label}</span>
+              <span className="text-lg">{item.icono}</span>
+              <span className="text-[10px] font-medium">{item.label}</span>
             </motion.button>
           ))}
         </div>
-      </div>
+      </nav>
     </div>
   );
 }

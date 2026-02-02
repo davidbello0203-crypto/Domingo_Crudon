@@ -5,7 +5,7 @@ const Header = ({ onNavigate }) => {
     <motion.header
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
-      className="fixed top-0 left-0 right-0 z-50 px-6 py-5 flex items-center justify-between bg-black/20 backdrop-blur-md border-b border-white/5"
+      className="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex items-center justify-between bg-menu-green-dark/85 backdrop-blur-md border-b border-menu-cream/10"
     >
       <button
         onClick={() => onNavigate('menu')}
@@ -17,7 +17,7 @@ const Header = ({ onNavigate }) => {
       <nav className="flex items-center gap-2 sm:gap-3">
         <span className="hidden sm:inline text-menu-cream/70 text-xs font-body mr-1 tracking-wide">Síguenos</span>
         <motion.a
-          href="https://www.facebook.com/TheGreenGarden0"
+          href="https://www.facebook.com/share/1PnibQuPRF/?mibextid=wwXIfr"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Síguenos en Facebook"

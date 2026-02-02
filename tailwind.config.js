@@ -25,6 +25,14 @@ export default {
         'green-warm': '#34d399',
         'warm-amber': '#f59e0b',
         'warm-glow': '#fbbf24',
+        // Nueva paleta elegante para ruletas
+        'bosque': '#1F4B3F',
+        'oliva': '#3E6B5A',
+        'hoja': '#7FB77E',
+        'lima': '#BFD8B8',
+        'arena': '#D2C2A5',
+        'beige': '#E6DAC6',
+        'verde-negro': '#1E2F2A',
       },
       fontFamily: {
         'slab': ['Roboto Slab', 'serif'],

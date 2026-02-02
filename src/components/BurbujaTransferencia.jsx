@@ -1,12 +1,10 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// Sustituye estos datos por los reales de The Green Garden
 const DATOS_TRANSFERENCIA = {
-  banco: 'Banco (ej. BBVA, Banorte)',
-  numeroCuenta: '012345678901234567',
-  clabe: '012 180 001234567890 1',
-  titular: 'The Green Garden',
+  banco: 'BBVA',
+  numeroTarjeta: '4152 3142 3861 4344',
+  titular: 'Carlos Sinai Martinez',
 };
 
 const BurbujaTransferencia = ({ abierto: abiertoExterno, onToggle }) => {
@@ -14,23 +12,14 @@ const BurbujaTransferencia = ({ abierto: abiertoExterno, onToggle }) => {
   const esControlado = abiertoExterno !== undefined && typeof onToggle === 'function';
   const abierto = esControlado ? abiertoExterno : abiertoInterno;
   const setAbierto = esControlado ? onToggle : setAbiertoInterno;
-  const [copiadoCuenta, setCopiadoCuenta] = useState(false);
-  const [copiadoClabe, setCopiadoClabe] = useState(false);
+  const [copiadoTarjeta, setCopiadoTarjeta] = useState(false);
   const refPanel = useRef(null);
 
-  const copiarNumero = () => {
-    const texto = DATOS_TRANSFERENCIA.numeroCuenta.replace(/\s/g, '');
+  const copiarTarjeta = () => {
+    const texto = DATOS_TRANSFERENCIA.numeroTarjeta.replace(/\s/g, '');
     navigator.clipboard.writeText(texto).then(() => {
-      setCopiadoCuenta(true);
-      setTimeout(() => setCopiadoCuenta(false), 2000);
-    });
-  };
-
-  const copiarClabe = () => {
-    const texto = DATOS_TRANSFERENCIA.clabe.replace(/\s/g, '');
-    navigator.clipboard.writeText(texto).then(() => {
-      setCopiadoClabe(true);
-      setTimeout(() => setCopiadoClabe(false), 2000);
+      setCopiadoTarjeta(true);
+      setTimeout(() => setCopiadoTarjeta(false), 2000);
     });
   };
 
@@ -43,7 +32,7 @@ const BurbujaTransferencia = ({ abierto: abiertoExterno, onToggle }) => {
   }, [abierto, setAbierto]);
 
   return (
-    <div ref={refPanel} className="fixed bottom-20 right-4 z-50 flex flex-col items-end">
+    <div ref={refPanel} className="fixed bottom-32 right-3 z-50 flex flex-col items-end gap-2">
       <AnimatePresence>
         {abierto && (
           <motion.div
@@ -51,42 +40,31 @@ const BurbujaTransferencia = ({ abierto: abiertoExterno, onToggle }) => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 10 }}
             transition={{ duration: 0.2 }}
-            className="mb-3 w-72 rounded-2xl border-2 border-menu-cream/30 bg-menu-green-dark shadow-xl overflow-hidden"
+            className="w-80 max-w-[calc(100vw-2rem)] rounded-2xl border-2 border-menu-cream/30 bg-menu-green-dark shadow-xl overflow-hidden"
           >
-            <div className="px-4 py-3 bg-menu-green-bar border-b border-menu-cream/20">
-              <h3 className="font-slab font-bold text-menu-cream text-sm uppercase tracking-wide">
+            <div className="px-5 py-4 bg-menu-green-bar border-b border-menu-cream/20">
+              <h3 className="font-slab font-bold text-menu-cream text-base uppercase tracking-wide">
                 Datos de transferencia
               </h3>
             </div>
-            <div className="p-4 space-y-3 text-sm font-body">
+            <div className="p-5 space-y-4 text-base font-body">
               <div>
-                <p className="text-menu-cream/60 text-xs uppercase tracking-wider">Banco</p>
+                <p className="text-menu-cream/60 text-sm uppercase tracking-wider">Banco</p>
                 <p className="text-menu-cream font-medium">{DATOS_TRANSFERENCIA.banco}</p>
               </div>
               <div>
-                <p className="text-menu-cream/60 text-xs uppercase tracking-wider">Número de cuenta</p>
-                <p className="text-menu-cream font-mono text-base break-all">{DATOS_TRANSFERENCIA.numeroCuenta}</p>
+                <p className="text-menu-cream/60 text-sm uppercase tracking-wider">Número de tarjeta</p>
+                <p className="text-menu-cream font-mono text-lg tracking-wider">{DATOS_TRANSFERENCIA.numeroTarjeta}</p>
                 <button
                   type="button"
-                  onClick={copiarNumero}
-                  className="mt-1.5 w-full py-2 rounded-lg bg-menu-cream text-menu-green-dark font-semibold text-xs hover:bg-menu-cream-light transition-colors"
+                  onClick={copiarTarjeta}
+                  className="mt-2 w-full py-2.5 rounded-lg bg-menu-cream text-menu-green-dark font-semibold text-sm hover:bg-menu-cream-light transition-colors"
                 >
-                  {copiadoCuenta ? '¡Copiado!' : 'Copiar número de cuenta'}
+                  {copiadoTarjeta ? '¡Copiado!' : 'Copiar número de tarjeta'}
                 </button>
               </div>
               <div>
-                <p className="text-menu-cream/60 text-xs uppercase tracking-wider">CLABE</p>
-                <p className="text-menu-cream font-mono text-sm break-all">{DATOS_TRANSFERENCIA.clabe}</p>
-                <button
-                  type="button"
-                  onClick={copiarClabe}
-                  className="mt-1.5 w-full py-2 rounded-lg bg-menu-green-bar text-menu-cream font-semibold text-xs hover:bg-menu-green-bar/80 transition-colors border border-menu-cream/20"
-                >
-                  {copiadoClabe ? '¡Copiado!' : 'Copiar CLABE'}
-                </button>
-              </div>
-              <div>
-                <p className="text-menu-cream/60 text-xs uppercase tracking-wider">Titular</p>
+                <p className="text-menu-cream/60 text-sm uppercase tracking-wider">Titular</p>
                 <p className="text-menu-cream font-medium">{DATOS_TRANSFERENCIA.titular}</p>
               </div>
             </div>
@@ -97,9 +75,9 @@ const BurbujaTransferencia = ({ abierto: abiertoExterno, onToggle }) => {
       <motion.button
         type="button"
         onClick={(e) => { e.stopPropagation(); setAbierto(!abierto); }}
-        className="flex items-center justify-center w-14 h-14 rounded-full bg-menu-cream text-menu-green-dark shadow-lg border-2 border-menu-green-dark/30 hover:bg-menu-cream-light transition-colors"
-        whileHover={{ scale: 1.08 }}
-        whileTap={{ scale: 0.92 }}
+        className="flex items-center justify-center w-12 h-12 rounded-full bg-menu-cream text-menu-green-dark shadow-md border border-menu-green-dark/30 hover:bg-menu-cream-light transition-colors"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
         aria-label="Ver datos de transferencia"
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
