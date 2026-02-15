@@ -5,40 +5,40 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    /* ── Breakpoints Mobile First (em para accesibilidad) ── */
+    screens: {
+      sm: '37.5em',   /* 600px  — Tablet */
+      md: '48em',     /* 768px  — Tablet landscape */
+      lg: '64em',     /* 1024px — Desktop */
+      xl: '80em',     /* 1280px — Desktop grande */
+    },
     extend: {
       colors: {
-        'terra-bg': '#fafaf8',
-        'terra-dark': '#1a2e26',
-        'terra-green': '#2d5a4a',
-        'terra-border': '#e8e6e1',
-        'bar-dark': '#0a0a0a',
-        'menu-green': '#1a3d32',
-        'menu-green-dark': '#152a22',
-        'menu-green-bar': '#234a3d',
-        'menu-cream': '#C7BEA2',
-        'menu-cream-light': '#E0DDCF',
-        'menu-beige': '#D7C8B3',
-        'green-primary': '#22c55e',
-        'green-light': '#4ade80',
-        'green-dark': '#16a34a',
-        'green-accent': '#10b981',
-        'green-warm': '#34d399',
-        'warm-amber': '#f59e0b',
-        'warm-glow': '#fbbf24',
-        // Nueva paleta elegante para ruletas
-        'bosque': '#1F4B3F',
-        'oliva': '#3E6B5A',
-        'hoja': '#7FB77E',
-        'lima': '#BFD8B8',
-        'arena': '#D2C2A5',
-        'beige': '#E6DAC6',
-        'verde-negro': '#1E2F2A',
+        'crudon-bg': '#1a1611',
+        'crudon-dark': '#0f0c09',
+        'crudon-tierra': '#8B4513',
+        'crudon-ocre': '#C4A35A',
+        'crudon-terracota': '#A0522D',
+        'crudon-cream': '#F5E6D3',
+        'crudon-beige': '#E8DCC8',
+        'crudon-madera': '#5D4037',
+        'crudon-verde': '#4A5D4A',
+        'crudon-dorado': '#D4A84B',
       },
       fontFamily: {
-        'slab': ['Roboto Slab', 'serif'],
-        'script': ['Dancing Script', 'cursive'],
-        'elegant': ['Playfair Display', 'serif'],
-        'body': ['Inter', 'sans-serif'],
+        'crudon-title': ['Playfair Display', 'serif'],
+        'crudon-script': ['Cormorant Garamond', 'serif'],
+        'crudon-body': ['Montserrat', 'sans-serif'],
+      },
+      fontSize: {
+        /* Escala fluida: clamp(min, preferred, max) */
+        'hero':    'clamp(2.25rem, 6vw + 1rem, 5.5rem)',
+        'hero-sub':'clamp(1.75rem, 4vw + 0.5rem, 4rem)',
+        'display': 'clamp(1.75rem, 3vw + 0.5rem, 3.25rem)',
+        'heading': 'clamp(1.25rem, 2vw + 0.5rem, 2rem)',
+      },
+      spacing: {
+        'section': 'clamp(3rem, 6vw, 6rem)',
       },
     },
   },
