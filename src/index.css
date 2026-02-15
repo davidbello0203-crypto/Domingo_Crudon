@@ -26,18 +26,21 @@
     overscroll-behavior: none;
   }
 
-  /* ── Scroll Container ── */
+  /* ── Scroll Container con snap ── */
   .snap-container {
     height: 100vh;
     height: 100dvh;
     overflow-y: auto;
+    scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: none;
   }
 
-  /* Sección full-screen */
+  /* Sección full-screen con snap */
   .snap-section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
     min-height: 100vh;
     min-height: 100dvh;
   }
