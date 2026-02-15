@@ -292,7 +292,7 @@ function HeroSection() {
    ═══════════════════════════════════════════════ */
 
 function MenuSection() {
-  const [categoriaActiva, setCategoriaActiva] = useState('bebidas');
+  const [categoriaActiva, setCategoriaActiva] = useState('birria');
 
   // Obtener categorías de comida para el tab activo
   const seccionActiva = seccionesCrudon.find((s) => s.id === categoriaActiva);

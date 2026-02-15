@@ -16,7 +16,7 @@ export const menuCrudon = {
       nombre: 'Birria de Borrego',
       descripcion: 'Nuestra especialidad, preparada con receta tradicional de Jalisco',
       productos: [
-        { id: 1, nombre: 'Quesataco', precio: 45, descripcion: 'Tortilla de harina o maíz rellena de birria y queso fundido', promo: '3 x $120' },
+        { id: 1, nombre: 'Quesataco', precio: 45, descripcion: 'Tortilla de harina o maíz rellena de birria y queso fundido', promo: '3 x $130' },
         { id: 2, nombre: 'Taco', precio: 35, descripcion: 'Tortilla hecha a mano con birria de borrego, cebolla y cilantro', promo: '3 x $100' },
         { id: 3, nombre: 'Tazón', precio: 120, descripcion: 'Consomé con birria de borrego, incluye tortillas de harina o maíz' },
         { id: 4, nombre: 'Tazón de Birriamen', precio: 150, descripcion: 'Ramen estilo birria con fideos, consomé y borrego deshebrado' },

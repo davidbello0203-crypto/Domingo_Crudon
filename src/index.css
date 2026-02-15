@@ -10,6 +10,7 @@
     scroll-behavior: smooth;
     font-size: 100%; /* 1rem = 16px del navegador */
     -webkit-text-size-adjust: 100%;
+    overscroll-behavior: none;
   }
 
   body {
@@ -20,22 +21,23 @@
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    overflow-y: hidden;
     line-height: 1.6;
+    overscroll-behavior: none;
   }
 
-  /* ── Scroll Snap Container ── */
+  /* ── Scroll Container ── */
   .snap-container {
     height: 100vh;
     height: 100dvh;
     overflow-y: auto;
-    scroll-snap-type: y proximity;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior: none;
   }
 
-  /* Sección full-screen con snap */
+  /* Sección full-screen */
   .snap-section {
-    scroll-snap-align: start;
     min-height: 100vh;
     min-height: 100dvh;
   }
